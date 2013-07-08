@@ -33,11 +33,15 @@ Two: Clone this repository.
 git clone https://github.com/bastosmichael/wp-chef.git
 ```
 
-Three: Install Vagrant Amazon Web Services (AWS) plugins
+Three: Install desired Vagrant Plugins
 
 ```
+#For AWS Deployment
 vagrant plugin install vagrant-aws
 vagrant plugin install vagrant-awsinfo
+
+#For Rackspace Deployment
+vagrant plugin install vagrant-rackspace
 ```
 
 Four: Copy Apache or Nginx Vagrantfile
@@ -49,14 +53,18 @@ or
 cp Vagrantfile.nginx Vagrantfile  #For Nginx Setup Pending
 ```
 
-Five: Configure Vagrantfile for AWS.
+Five: Configure Vagrantfile for Production.
 
 ```
-    # Add your AWS configuration
+    # Add your configurations for AWS Deployment
     aws.access_key_id = "YOUR KEY"
     aws.secret_access_key = "YOUR SECRET KEY"
     aws.keypair_name = "KEYPAIR NAME"
     override.ssh.private_key_path = "PATH TO YOUR PRIVATE KEY"
+
+    # Add your configurations for RackSpace Deployment
+    rs.username = "YOUR USERNAME"
+    rs.api_key  = "YOUR API KEY"
 
     # Lockdown your system passwords
     :server_root_password   => "YOUR RANDOM PASSWORD",
@@ -75,17 +83,18 @@ vagrant up
 Configure your blog at [http://localhost:8000/wp-admin/install.php](http://localhost:8000/wp-admin/install.php).
 ```
 
-Seven: Vagrant up to deploy to AWS.
+Seven: Vagrant up to deploy to Remote Service.
 
 ```
+# For AWS Deployment, may take a few minutes
 cd wp-chef
 vagrant up --provider=aws
-
-#This takes a few minutes
-
 vagrant awsinfo -k host
-
 # Use vagrant awsinfo -m default -p to view all the instance data
 
-Configure your blog at [http://YOUR_AWS_HOST/wp-admin/install.php](http://YOUR_AWS_HOST/wp-admin/install.php).
+# For Rackspace Deployment, may take a few minutes
+cd wp-chef
+vagrant up --provider=rackspace
+
+Configure your blog at [http://YOUR_HOST/wp-admin/install.php](http://YOUR_HOST/wp-admin/install.php).
 ```

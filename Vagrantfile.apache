@@ -16,6 +16,13 @@ Vagrant.configure("2") do |config|
     aws.instance_type = "m1.small"
   end
 
+  config.vm.provider :rackspace do |rs|
+    rs.username = "YOUR USERNAME"
+    rs.api_key  = "YOUR API KEY"
+    rs.flavor   = /512MB/
+    rs.image    = /Ubuntu/
+  end
+
   # Port 8000 on the host will go to port 80 on the Vagrant box
   config.vm.network :forwarded_port, guest: 80, host: 8000, auto_correct: true
 
