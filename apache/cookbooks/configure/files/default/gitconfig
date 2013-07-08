@@ -1,0 +1,5 @@
+[user]
+	name = Rob Martin
+	email = rob@version2beta.com
+[push]
+	default = matching
