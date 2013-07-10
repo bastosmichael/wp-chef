@@ -38,5 +38,6 @@ Vagrant.configure("2") do |config|
       }
     }
     chef.cookbooks_path = "nginx/cookbooks"
+    chef.add_recipe "apt"
   end
 end
