@@ -66,7 +66,7 @@ end
 directory "#{node['wordpress']['dir']}" do
   owner "root"
   group "root"
-  mode "0755"
+  mode "0777"
   action :create
   recursive true
 end
