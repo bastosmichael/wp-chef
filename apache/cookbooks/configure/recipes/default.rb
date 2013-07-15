@@ -48,5 +48,11 @@ end
 
 link "/home/vagrant/blog" do
   to "/var/www/wordpress"
+  notifies :run, "execute[permissions]", :immediately
 end
 
+execute "permissions" do
+  cwd node['wordpress']['dir']
+  command "sudo chmod -R 777 *"
+  action :nothing
+end
