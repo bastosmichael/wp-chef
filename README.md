@@ -11,10 +11,10 @@ Deploys cookbook both to Vagrant and EC2
 
 Nginx Alpha: Currently working.
 ```
-Deployment to Vagrant & EC2 coming.
+Deploys cookbook both to Vagrant and EC2
 ```
 
-Distributed: Planned development
+Distributed: Currently Under Development.
 ```
 I have the chef script to do distributed but I have to rewrite it to have it work with Vagrant.
 ```
