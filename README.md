@@ -1,6 +1,6 @@
 # WP-Chef
 
-I'm transitioning all of my working chef recipes for WordPress into a single install utility. Basically this is a shortcut to setting up a Wordpress dev & production environment using Vagrant on VirtualBox (Locally) & EC2 (Remotely) provisioned with Chef. Updated to support Vagrant 2 (1.2) configuration. Currently only the Apache version works 100%.
+I'm transitioning all of my working chef recipes for WordPress into a single install utility. Basically this is a shortcut to setting up a Wordpress dev & production environment using Vagrant on VirtualBox (Locally) & EC2 (Remotely) provisioned with Chef. Updated to support Vagrant 2 (1.2) configuration.
 
 ## Development Strategy
 
@@ -9,7 +9,7 @@ Apache Beta: Currently working
 Deploys cookbook both to Vagrant and EC2
 ```
 
-Nginx Alpha: Currently under redevelopment
+Nginx Alpha: Currently working.
 ```
 Deployment to Vagrant & EC2 coming.
 ```
