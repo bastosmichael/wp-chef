@@ -1,0 +1,3 @@
+cookbook "bluepill" do
+  runtimes []
+end
