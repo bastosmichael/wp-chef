@@ -3,7 +3,7 @@
 
 
 Vagrant.configure("2") do |config|
-  config.vm.box = "wordpress-apache"
+  config.vm.box = "standalone-apache"
   config.vm.box_url = "http://files.vagrantup.com/precise64.box"
 
   config.vm.provider :aws do |aws, override|
@@ -37,7 +37,7 @@ Vagrant.configure("2") do |config|
         :server_debian_password => "YOUR RANDOM PASSWORD"
       }
     }
-    chef.cookbooks_path = "apache/cookbooks"
+    chef.cookbooks_path = "standalone-apache-cookbook"
     chef.add_recipe "apt"
     chef.add_recipe "ohai"
     chef.add_recipe "configure"

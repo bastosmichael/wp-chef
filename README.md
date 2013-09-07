@@ -66,10 +66,13 @@ Five: Configure Vagrantfile for Production.
     rs.username = "YOUR USERNAME"
     rs.api_key  = "YOUR API KEY"
 
-    # Lockdown your system passwords
+    # Lockdown your system passwords for apache
     :server_root_password   => "YOUR RANDOM PASSWORD",
     :server_repl_password   => "YOUR RANDOM PASSWORD",
     :server_debian_password => "YOUR RANDOM PASSWORD"
+
+    # Lockdown your system password for nginx
+    "server_root_password"  => "PASSWORD",
 ```
 
 Six: Vagrant up to deploy locally.
