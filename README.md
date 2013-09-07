@@ -9,12 +9,17 @@ Apache Beta: Currently working
 Deploys cookbook both to Vagrant and EC2
 ```
 
-Nginx Alpha: Currently working.
+Nginx Beta: Currently working.
 ```
 Deploys cookbook both to Vagrant and EC2
 ```
 
-Distributed: Currently Under Development.
+Redis Alpha: Currently Under Development.
+```
+Deploys cookbook both to Vagrant and EC2 with Redis Caching
+```
+
+Distributed Concept: Currently Under Development.
 ```
 I have the chef script to do distributed but I have to rewrite it to have it work with Vagrant.
 ```
@@ -50,7 +55,11 @@ cp Vagrantfile.apache Vagrantfile #For Apache Setup
 
 or
 
-cp Vagrantfile.nginx Vagrantfile  #For Nginx Setup Pending
+cp Vagrantfile.nginx Vagrantfile  #For Nginx Setup
+
+or 
+
+cp Vagrantfile.redis Vagrantfile  #For Redis Setup
 ```
 
 Five: Configure Vagrantfile for Production.
@@ -71,7 +80,7 @@ Five: Configure Vagrantfile for Production.
     :server_repl_password   => "YOUR RANDOM PASSWORD",
     :server_debian_password => "YOUR RANDOM PASSWORD"
 
-    # Lockdown your system password for nginx
+    # Lockdown your system password for nginx & redis
     "server_root_password"  => "PASSWORD",
 ```
 
