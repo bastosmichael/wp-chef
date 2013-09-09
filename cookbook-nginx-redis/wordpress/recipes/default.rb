@@ -143,6 +143,20 @@ template "#{node['wordpress']['dir']}/wp-config.php" do
   notifies :write, "log[Navigate to 'http://#{server_fqdn}/wp-admin/install.php' to complete wordpress installation]"
 end
 
+template "#{node['wordpress']['dir']}/wp-index-redis.php" do
+  source "wp-index-redis.php.erb"
+  owner "www-data"
+  group "www-data"
+  mode "0755"
+end
+
+template "#{node['wordpress']['dir']}/predis.php" do
+  source "predis.php.erb"
+  owner "www-data"
+  group "www-data"
+  mode "0755"
+end
+
 # apache_site "000-default" do
 #   enable false
 # end
