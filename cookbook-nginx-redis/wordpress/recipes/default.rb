@@ -32,7 +32,7 @@ end
 if node.has_key?("ec2")
   server_fqdn = node['ec2']['public_hostname']
 else
-  server_fqdn = node['fqdn']
+  server_fqdn = "localhost:8000"
 end
 
 node.set_unless['wordpress']['db']['password'] = secure_password
@@ -71,8 +71,12 @@ directory "#{node['wordpress']['dir']}" do
 end
 
 execute "make-www-data-owner" do
-  command "chown -R www-data:www-data #{node['wordpress']['dir']}"
+  command "sudo chown -R www-data:www-data #{node['wordpress']['dir']}"
   only_if { Etc.getpwuid(File.stat("#{node['wordpress']['dir']}").uid).name != "www-data" }
+end
+
+execute "pseudo-redis-install" do
+  command "sudo apt-get install redis-server"
 end
 
 execute "untar-wordpress" do
@@ -155,6 +159,7 @@ template "#{node['wordpress']['dir']}/predis.php" do
   owner "www-data"
   group "www-data"
   mode "0755"
+  notifies :run, "execute[pseudo-redis-install]", :immediately
 end
 
 # apache_site "000-default" do

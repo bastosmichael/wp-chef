@@ -14,7 +14,7 @@ Nginx Beta: Currently working.
 Deploys cookbook both to Vagrant and EC2
 ```
 
-Redis Alpha: Currently Under Development.
+Redis Alpha: Currently working.
 ```
 Deploys cookbook both to Vagrant and EC2 with Redis Caching
 ```
