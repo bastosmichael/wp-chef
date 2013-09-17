@@ -13,7 +13,7 @@ Vagrant.configure("2") do |config|
     override.ssh.private_key_path = "PATH TO YOUR PRIVATE KEY"
     override.ssh.username = "ubuntu"
     aws.ami = "ami-a1fd74c8"
-    aws.instance_type = "t1.micro"
+    aws.instance_type = "m1.small"
   end
 
   config.vm.provider :rackspace do |rs|
