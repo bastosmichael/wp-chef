@@ -35,7 +35,7 @@ http://downloads.vagrantup.com/tags/v1.2.2
 Two: Clone this repository.
 
 ```
-git clone https://github.com/bastosmichael/wp-chef.git
+git clone https://github.com/bastosmichael/WP-Chef.git
 ```
 
 Three: Install desired Vagrant Plugins
