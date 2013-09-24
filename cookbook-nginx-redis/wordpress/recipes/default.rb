@@ -35,7 +35,7 @@ else
   server_fqdn = "localhost:8000"
 end
 
-node.set_unless['wordpress']['db']['password'] = secure_password
+node.set_unless['wordpress']['db']['password'] = node['mysql']['server_root_password']
 node.set_unless['wordpress']['keys']['auth'] = secure_password
 node.set_unless['wordpress']['keys']['secure_auth'] = secure_password
 node.set_unless['wordpress']['keys']['logged_in'] = secure_password
