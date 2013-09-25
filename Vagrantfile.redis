@@ -41,11 +41,10 @@ Vagrant.configure("2") do |config|
     chef.add_recipe "php::module_gd"
     chef.add_recipe "php::module_mysql"   
     chef.add_recipe "php-fpm"
-    # chef.add_recipe "redis"
     chef.add_recipe "wordpress"
     chef.json = {
       "mysql" => { 
-        "host" => "localhost",
+        "dbhost" => "localhost",
         "database" => "wordpressdb",
         "dbuser" => "wordpressuser",
         "server_root_password"  => "password",

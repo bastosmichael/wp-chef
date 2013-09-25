@@ -37,7 +37,7 @@ else
   server_fqdn = "localhost:8000"
 end
 
-node.set_unless['wordpress']['db']['password'] = secure_password
+node.set_unless['wordpress']['db']['password'] = node['mysql']['server_root_password']
 node.set_unless['wordpress']['keys']['auth'] = secure_password
 node.set_unless['wordpress']['keys']['secure_auth'] = secure_password
 node.set_unless['wordpress']['keys']['logged_in'] = secure_password
@@ -128,6 +128,7 @@ template "#{node['wordpress']['dir']}/wp-config.php" do
   group "root"
   mode "0644"
   variables(
+    :host            => node['wordpress']['db']['host'],
     :database        => node['wordpress']['db']['database'],
     :user            => node['wordpress']['db']['user'],
     :password        => node['wordpress']['db']['password'],

@@ -136,6 +136,7 @@ template "#{node['wordpress']['dir']}/wp-config.php" do
   group "root"
   mode "0644"
   variables(
+    :host            => node['wordpress']['db']['host'],
     :database        => node['wordpress']['db']['database'],
     :user            => node['wordpress']['db']['user'],
     :password        => node['wordpress']['db']['password'],

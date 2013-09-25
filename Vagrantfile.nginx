@@ -44,7 +44,10 @@ Vagrant.configure("2") do |config|
     chef.add_recipe "wordpress"
     chef.json = {
       "mysql" => { 
-        "server_root_password"  => "PASSWORD",
+        "dbhost" => "localhost",
+        "database" => "wordpressdb",
+        "dbuser" => "wordpressuser",
+        "server_root_password"  => "password",
         "bind_address"      => "127.0.0.1",
         "allow_remote_root"   => true
       },
