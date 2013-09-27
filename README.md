@@ -65,6 +65,10 @@ cp Vagrantfile.redis Vagrantfile  #For Redis Setup
 Five: Configure Vagrantfile for Production.
 
 ```
+    # You may need to change to a dummy box the first time you run it
+    config.vm.box = "dummy"
+    config.vm.box_url = "https://github.com/mitchellh/vagrant-aws/raw/master/dummy.box"
+
     # Add your configurations for AWS Deployment
     aws.access_key_id = "YOUR KEY"
     aws.secret_access_key = "YOUR SECRET KEY"
@@ -75,13 +79,20 @@ Five: Configure Vagrantfile for Production.
     rs.username = "YOUR USERNAME"
     rs.api_key  = "YOUR API KEY"
 
-    # Lockdown your system passwords for apache
+
+    # Lockdown your system database for apache (:server_root_password is database password)
+    "dbhost" => "localhost",
+    "database" => "wordpressdb",
+    "dbuser" => "wordpressuser",
     :server_root_password   => "YOUR RANDOM PASSWORD",
     :server_repl_password   => "YOUR RANDOM PASSWORD",
     :server_debian_password => "YOUR RANDOM PASSWORD"
 
-    # Lockdown your system password for nginx & redis
-    "server_root_password"  => "PASSWORD",
+    # Lockdown your system database for nginx & redis ("server_root_password" is database password)
+    "dbhost" => "localhost",
+    "database" => "wordpressdb",
+    "dbuser" => "wordpressuser",
+    "server_root_password"  => "password",
 ```
 
 Six: Vagrant up to deploy locally.
