@@ -3,8 +3,14 @@
 
 
 Vagrant.configure("2") do |config|
+
   config.vm.box = "nginx-standalone"
-  config.vm.box_url = "http://files.vagrantup.com/precise64.box"
+
+  if ENV['VAGRANT_DEFAULT_PROVIDER'] == 'vmware_fusion'
+    config.vm.box_url = "http://files.vagrantup.com/precise64_vmware.box"
+  else
+    config.vm.box_url = "http://files.vagrantup.com/precise64.box"
+  end
 
   config.vm.provider :aws do |aws, override|
     aws.access_key_id = "YOUR KEY"
