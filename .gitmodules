@@ -37,3 +37,12 @@
 [submodule "cookbook/runit"]
 	path = cookbook/runit
 	url = https://github.com/opscode-cookbooks/runit.git
+[submodule "cookbook/apache2"]
+	path = cookbook/apache2
+	url = https://github.com/opscode-cookbooks/apache2.git
+[submodule "cookbook/redis"]
+	path = cookbook/redis
+	url = https://github.com/dstanek/chef-redis
+[submodule "cookbook/chef-php-extra"]
+	path = cookbook/chef-php-extra
+	url = https://github.com/inviqa/chef-php-extra
