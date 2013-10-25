@@ -46,3 +46,6 @@
 [submodule "cookbook/chef-php-extra"]
 	path = cookbook/chef-php-extra
 	url = https://github.com/inviqa/chef-php-extra
+[submodule "cookbook/wp-cli"]
+	path = cookbook/wp-cli
+	url = https://github.com/zippykid/chef-wp-cli.git
