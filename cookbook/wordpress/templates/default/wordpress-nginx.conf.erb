@@ -1,0 +1,58 @@
+server {
+       client_max_body_size 20M;
+        listen 80;
+       server_name _; 
+       root /var/www; 
+        server_name_in_redirect off;
+        port_in_redirect off;
+ 
+        rewrite ^.*/files/(.*)$ /wp-includes/ms-files.php?file=$1 last;
+        if (!-e $request_filename) {
+                rewrite ^.+?(/wp-.*) $1 last;
+                rewrite ^.+?(/.*\.php)$ $1 last;
+                rewrite ^ /wp-index-redis.php last;
+        }
+ 
+        access_log /var/log/nginx/bastos-access.log;
+ 
+        location /index.php {
+                alias /var/www/wp-index-redis.php;
+        }
+ 
+        location / {
+        index wp-index-redis.php;
+                try_files $uri $uri/ /wp-index-redis.php?$args;
+        }
+ 
+        location /wp-admin/ {
+                index index.php;
+                try_files $uri $uri/ /index.php$args;
+        }
+       location = /favicon.ico {
+                log_not_found off;
+                access_log off;
+       }
+       location = /robots.txt {
+                allow all;
+                log_not_found off;
+                access_log off;
+       }
+       # Deny all attempts to access hidden files such as .htaccess, .htpasswd, .DS_Store (Mac).
+       location ~ /\. {
+                deny all;
+                access_log off;
+                log_not_found off;
+       }
+       # Add trailing slash to */wp-admin requests.
+       rewrite /wp-admin$ $scheme://$host$uri/ permanent;
+       location ~*  \.(jpg|jpeg|png|gif|css|js|ico)$ {
+                expires max;
+                log_not_found off;
+       }
+       location ~ \.php$ {
+                try_files $uri =404;
+                include /etc/nginx/fastcgi_params;
+                fastcgi_pass 127.0.0.1:9000;
+                fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+       }
+}

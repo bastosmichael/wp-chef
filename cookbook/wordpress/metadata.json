@@ -1,0 +1,190 @@
+{
+  "name": "wordpress",
+  "description": "Installs/Configures WordPress",
+  "long_description": "Description\n===========\n\nInstalls and configures Wordpress according to the instructions at http://codex.wordpress.org/Installing_WordPress. Does not set up a wordpress blog. You will need to do this manually by going to http://hostname/wp-admin/install.php (this URL may be different if you change the attribute values).\n\nRequirements\n============\n\nPlatform\n--------\n\n* Debian, Ubuntu\n\nTested on:\n\n* Ubuntu 9.04, 9.10, 10.04\n\nCookbooks\n---------\n\n* mysql\n* php\n* apache2\n* opensssl (uses library to generate secure passwords)\n\nAttributes\n==========\n\n* `node['wordpress']['version']` - Set the version to download. Using 'latest' (the default) will install the most current version.\n* `node['wordpress']['checksum']` - sha256sum of the tarball, make sure this matches for the version! (Not used for 'latest' version.)\n* `node['wordpress']['dir']` - Set the location to place wordpress files. Default is /var/www.\n* `node['wordpress']['db']['database']` - Wordpress will use this MySQL database to store its data.\n* `node['wordpress']['db']['user']` - Wordpress will connect to MySQL using this user.\n* `node['wordpress']['db']['password']` - Password for the Wordpress MySQL user. The default is a randomly generated string.\n* `node['wordpress']['server_aliases']` - Array of ServerAliases used in apache vhost. Default is `node['fqdn']`.\n\nAttributes will probably never need to change (these all default to randomly generated strings):\n\n* `node['wordpress']['keys']['auth']`\n* `node['wordpress']['keys']['secure_auth']`\n* `node['wordpress']['keys']['logged_in']`\n* `node['wordpress']['keys']['nonce']`\n\nThe random generation is handled with the secure_password method in the openssl cookbook which is a cryptographically secure random generator and not predictable like the random method in the ruby standard library.\n\nUsage\n=====\n\nIf a different version than the default is desired, download that version and get the SHA256 checksum (sha256sum on Linux systems), and set the version and checksum attributes.\n\nAdd the \"wordpress\" recipe to your node's run list or role, or include the recipe in another cookbook.\n\nChef will install and configure mysql, php, and apache2 according to the instructions at http://codex.wordpress.org/Installing_WordPress. Does not set up a wordpress blog. You will need to do this manually by going to http://hostname/wp-admin/install.php (this URL may be different if you change the attribute values).\n\nThe mysql::server recipe needs to come first, and contain an execute resource to install mysql privileges from the grants.sql template in this cookbook.\n\n## Note about MySQL\n\nThis cookbook will decouple the mysql::server and be smart about detecting whether to use a local database or find a database server in the environment in a later version.\n\nLicense and Author\n==================\n\nAuthor:: Barry Steinglass (barry@opscode.com)\nAuthor:: Joshua Timberman (joshua@opscode.com)\nAuthor:: Seth Chisamore (schisamo@opscode.com)\n\nCopyright:: 2010-2011, Opscode, Inc\n\nLicensed under the Apache License, Version 2.0 (the \"License\");\nyou may not use this file except in compliance with the License.\nYou may obtain a copy of the License at\n\n    http://www.apache.org/licenses/LICENSE-2.0\n\nUnless required by applicable law or agreed to in writing, software\ndistributed under the License is distributed on an \"AS IS\" BASIS,\nWITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\nSee the License for the specific language governing permissions and\nlimitations under the License.\n",
+  "maintainer": "Barry Steinglass",
+  "maintainer_email": "cookbooks@opscode.com",
+  "license": "Apache 2.0",
+  "platforms": {
+    "debian": ">= 0.0.0",
+    "ubuntu": ">= 0.0.0"
+  },
+  "dependencies": {
+    "php": ">= 0.0.0",
+    "openssl": ">= 0.0.0",
+    "apache2": ">= 0.99.4",
+    "mysql": ">= 1.0.5"
+  },
+  "recommendations": {
+  },
+  "suggestions": {
+  },
+  "conflicting": {
+  },
+  "providing": {
+  },
+  "replacing": {
+  },
+  "attributes": {
+    "WordPress/version": {
+      "display_name": "WordPress download version",
+      "description": "Version of WordPress to download from the WordPress site or 'latest' for the current release.",
+      "default": "latest",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string",
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "WordPress/checksum": {
+      "display_name": "WordPress tarball checksum",
+      "description": "Checksum of the tarball for the version specified.",
+      "default": "",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string",
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "WordPress/dir": {
+      "display_name": "WordPress installation directory",
+      "description": "Location to place WordPress files.",
+      "default": "/var/www/wordpress",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string",
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "WordPress/db/database": {
+      "display_name": "WordPress MySQL database",
+      "description": "WordPress will use this MySQL database to store its data.",
+      "default": "wordpressdb",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string",
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "WordPress/db/user": {
+      "display_name": "WordPress MySQL user",
+      "description": "WordPress will connect to MySQL using this user.",
+      "default": "wordpressuser",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string",
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "WordPress/db/password": {
+      "display_name": "WordPress MySQL password",
+      "description": "Password for the WordPress MySQL user.",
+      "default": "randomly generated",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string",
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "WordPress/keys/auth": {
+      "display_name": "WordPress auth key",
+      "description": "WordPress auth key.",
+      "default": "randomly generated",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string",
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "WordPress/keys/secure_auth": {
+      "display_name": "WordPress secure auth key",
+      "description": "WordPress secure auth key.",
+      "default": "randomly generated",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string",
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "WordPress/keys/logged_in": {
+      "display_name": "WordPress logged-in key",
+      "description": "WordPress logged-in key.",
+      "default": "randomly generated",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string",
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "WordPress/keys/nonce": {
+      "display_name": "WordPress nonce key",
+      "description": "WordPress nonce key.",
+      "default": "randomly generated",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string",
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "WordPress/server_aliases": {
+      "display_name": "WordPress Server Aliases",
+      "description": "WordPress Server Aliases",
+      "default": "FQDN",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string",
+      "required": "optional",
+      "recipes": [
+
+      ]
+    }
+  },
+  "groupings": {
+  },
+  "recipes": {
+    "WordPress": "Installs and configures WordPress LAMP stack on a single system"
+  },
+  "version": "1.0.0"
+}
