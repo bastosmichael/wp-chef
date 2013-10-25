@@ -1,0 +1,39 @@
+[submodule "cookbook/nginx"]
+	path = cookbook/nginx
+	url = https://github.com/opscode-cookbooks/nginx.git
+[submodule "cookbook/apt"]
+	path = cookbook/apt
+	url = https://github.com/opscode-cookbooks/apt.git
+[submodule "cookbook/bluepill"]
+	path = cookbook/bluepill
+	url = https://github.com/opscode-cookbooks/bluepill.git
+[submodule "cookbook/build-essential"]
+	path = cookbook/build-essential
+	url = https://github.com/opscode-cookbooks/build-essential.git
+[submodule "cookbook/dmg"]
+	path = cookbook/dmg
+	url = https://github.com/opscode-cookbooks/dmg.git
+[submodule "cookbook/git"]
+	path = cookbook/git
+	url = https://github.com/opscode-cookbooks/git.git
+[submodule "cookbook/mysql"]
+	path = cookbook/mysql
+	url = https://github.com/opscode-cookbooks/mysql.git
+[submodule "cookbook/ohai"]
+	path = cookbook/ohai
+	url = https://github.com/opscode-cookbooks/ohai.git
+[submodule "cookbook/openssl"]
+	path = cookbook/openssl
+	url = https://github.com/opscode-cookbooks/openssl.git
+[submodule "cookbook/php"]
+	path = cookbook/php
+	url = https://github.com/opscode-cookbooks/php.git
+[submodule "cookbook/yum"]
+	path = cookbook/yum
+	url = https://github.com/opscode-cookbooks/yum.git
+[submodule "cookbook/xml"]
+	path = cookbook/xml
+	url = https://github.com/opscode-cookbooks/xml.git
+[submodule "cookbook/runit"]
+	path = cookbook/runit
+	url = https://github.com/opscode-cookbooks/runit.git
