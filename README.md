@@ -1,68 +1,36 @@
 # WP-Chef
 
-I'm transitioning all of my working chef recipes for WordPress into a single install utility. Basically this is a shortcut to setting up a Wordpress dev & production environment using Vagrant on VirtualBox (Locally) & EC2 (Remotely) provisioned with Chef. Updated to support Vagrant 2 (1.2) configuration.
-
-## Development Strategy
-
-Apache Beta: Currently working
-```
-Deploys cookbook both to Vagrant and EC2
-```
-
-Nginx Beta: Currently working.
-```
-Deploys cookbook both to Vagrant and EC2
-```
-
-Redis Alpha: Currently working.
-```
-Deploys cookbook both to Vagrant and EC2 with Redis Caching
-```
-
-Distributed Concept: Currently Under Development.
-```
-I have the chef script to do distributed but I have to rewrite it to have it work with Vagrant.
-```
+I'm transitioning all of my working chef recipes for WordPress into a single install utility. Basically this is a shortcut to setting up a Wordpress dev & production environment using Vagrant on VirtualBox (Locally) & EC2 (Remotely) provisioned with Chef. Updated to support Vagrant 2 (1.3.5) configuration.
 
 ## Usage
 
-One: Install Vagrant 1.2.2.
+One: Install Vagrant 1.3.5.
 
 ```
-http://downloads.vagrantup.com/tags/v1.2.2
+http://downloads.vagrantup.com/tags/v1.3.5
 ```
 
 Two: Clone this repository.
 
 ```
-git clone https://github.com/bastosmichael/WP-Chef.git
+git clone https://github.com/bastosmichael/wp-chef.git
 ```
 
 Three: Install desired Vagrant Plugins
 
 ```
 #For AWS Deployment
-vagrant plugin install vagrant-aws
-vagrant plugin install vagrant-awsinfo
+sudo vagrant plugin install vagrant-aws
+sudo vagrant plugin install vagrant-awsinfo
 
 #For Rackspace Deployment
-vagrant plugin install vagrant-rackspace
+sudo vagrant plugin install vagrant-rackspace
+
+#For Digital Ocean Deployment
+sudo vagrant plugin install vagrant-digitalocean
 ```
 
-Four: Copy Apache or Nginx Vagrantfile
-```
-cp Vagrantfile.apache Vagrantfile #For Apache Setup
-
-or
-
-cp Vagrantfile.nginx Vagrantfile  #For Nginx Setup
-
-or 
-
-cp Vagrantfile.redis Vagrantfile  #For Redis Setup
-```
-
-Five: Configure Vagrantfile for Production.
+Four: Configure Vagrantfile for Production.
 
 ```
     # You may need to change to a dummy box the first time you run it
@@ -95,18 +63,18 @@ Five: Configure Vagrantfile for Production.
     "server_root_password"  => "password",
 ```
 
-Six: Vagrant up to deploy locally.
+Five: Vagrant up to deploy locally.
 
 ```
 cd wp-chef
-vagrant up 
+vagrant up
 
 #This takes a few minutes
 
 Configure your blog at [http://localhost:8000/wp-admin/install.php](http://localhost:8000/wp-admin/install.php).
 ```
 
-Seven: Vagrant up to deploy to Remote Service.
+Six: Vagrant up to deploy to Remote Service.
 
 ```
 # For AWS Deployment, may take a few minutes
@@ -118,6 +86,10 @@ vagrant awsinfo -k host
 # For Rackspace Deployment, may take a few minutes
 cd wp-chef
 vagrant up --provider=rackspace
+
+# For Digital Ocean Deployment, may take a few minutes
+cd wp-chef
+vagrant up --provider=digital_ocean
 
 Configure your blog at [http://YOUR_HOST/wp-admin/install.php](http://YOUR_HOST/wp-admin/install.php).
 ```
