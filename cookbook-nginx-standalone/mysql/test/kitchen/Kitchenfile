@@ -1,5 +1,0 @@
-cookbook "mysql" do
-  configuration "client"
-  configuration "ruby"
-  configuration "server"
-end
