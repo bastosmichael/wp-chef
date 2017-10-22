@@ -121,3 +121,4 @@ vagrant up --provider=rackspace
 
 Configure your blog at [http://YOUR_HOST/wp-admin/install.php](http://YOUR_HOST/wp-admin/install.php).
 ```
+Thanks
